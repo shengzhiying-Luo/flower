@@ -5,6 +5,7 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
+import re
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
@@ -20,8 +21,8 @@ template_id = os.environ["TEMPLATE_ID"]
 def get_love_code():
   url = "https://api.1314.cool/words/api.php"
   res = requests.get(url).text
-  tmp, love_code = res.replace('<br>')
-  love_code = tmp + love_code
+  # tmp, love_code = res.replace('<br>')
+  love_code = re.sub('<br>', '', res)
   return love_code
 
 def get_weather():
