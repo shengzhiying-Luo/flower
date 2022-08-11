@@ -19,7 +19,8 @@ template_id = os.environ["TEMPLATE_ID"]
 
 def get_love_code():
   url = "https://api.1314.cool/words/api.php"
-  love_code = requests.get(url).text
+  res = requests.get(url).text
+  love_code = res.replace('<br>')
   return love_code
 
 def get_weather():
