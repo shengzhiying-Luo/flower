@@ -20,7 +20,6 @@ template_id = os.environ["TEMPLATE_ID"]
 def get_love_code():
   url = "https://api.1314.cool/words/api.php"
   love_code = requests.get(url)
-  print(love_code)
   return love_code
 
 def get_weather():
@@ -54,6 +53,6 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
 love_code = get_love_code()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()},"love_code":{"value":love_code}}
+data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()},"love_code":{"value":"love_code"}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
